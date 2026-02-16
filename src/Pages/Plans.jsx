@@ -113,26 +113,21 @@ export default function AdminPlans() {
   formData.append("popularButtonText", form.popularButtonText);
   formData.append("popularBg", form.popularBg);
 
-  // convert comma string → array
+  // Convert arrays properly
   const benefitsArray =
     typeof form.benefits === "string"
       ? form.benefits.split(",").map((b) => b.trim())
       : form.benefits;
 
-  const whoArray =
+  const whoShouldBuyArray =
     typeof form.whoShouldBuy === "string"
       ? form.whoShouldBuy.split(",").map((w) => w.trim())
       : form.whoShouldBuy;
 
-  benefitsArray.forEach((b) => {
-    formData.append("benefits[]", b);
-  });
+  formData.append("benefits", JSON.stringify(benefitsArray));
+  formData.append("whoShouldBuy", JSON.stringify(whoShouldBuyArray));
 
-  whoArray.forEach((w) => {
-    formData.append("whoShouldBuy[]", w);
-  });
-
-  // image
+  // 🔥 Single Image
   if (form.image) {
     formData.append("image", form.image);
   }
