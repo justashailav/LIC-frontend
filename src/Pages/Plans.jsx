@@ -99,29 +99,54 @@ export default function AdminPlans() {
   };
 
   const handleSubmit = (e) => {
-    e.preventDefault();
+  e.preventDefault();
 
-    const payload = {
-      ...form,
-      benefits:
-        typeof form.benefits === "string"
-          ? form.benefits.split(",").map((b) => b.trim())
-          : form.benefits,
-      whoShouldBuy:
-        typeof form.whoShouldBuy === "string"
-          ? form.whoShouldBuy.split(",").map((w) => w.trim())
-          : form.whoShouldBuy,
-    };
+  const formData = new FormData();
 
-    if (editingId) {
-      dispatch(updatePlan({ id: editingId, data: payload }));
-    } else {
-      dispatch(createPlan(payload));
-    }
+  formData.append("title", form.title);
+  formData.append("slug", form.slug);
+  formData.append("description", form.description);
+  formData.append("order", form.order);
+  formData.append("isPopular", form.isPopular);
+  formData.append("popularLabel", form.popularLabel);
+  formData.append("popularValue", form.popularValue);
+  formData.append("popularButtonText", form.popularButtonText);
+  formData.append("popularBg", form.popularBg);
 
-    setOpenModal(false);
-    setEditingId(null);
-  };
+  // convert comma string → array
+  const benefitsArray =
+    typeof form.benefits === "string"
+      ? form.benefits.split(",").map((b) => b.trim())
+      : form.benefits;
+
+  const whoArray =
+    typeof form.whoShouldBuy === "string"
+      ? form.whoShouldBuy.split(",").map((w) => w.trim())
+      : form.whoShouldBuy;
+
+  benefitsArray.forEach((b) => {
+    formData.append("benefits[]", b);
+  });
+
+  whoArray.forEach((w) => {
+    formData.append("whoShouldBuy[]", w);
+  });
+
+  // image
+  if (form.image) {
+    formData.append("image", form.image);
+  }
+
+  if (editingId) {
+    dispatch(updatePlan({ id: editingId, data: formData }));
+  } else {
+    dispatch(createPlan(formData));
+  }
+
+  setOpenModal(false);
+  setEditingId(null);
+};
+
 
   return (
     <div className="min-h-screen bg-gray-50 p-6">
