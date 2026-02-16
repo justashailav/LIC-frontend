@@ -1,11 +1,11 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
-import Img1 from "../assets/event1.jpg";
-import Img2 from "../assets/event2.jpg";
-import Img3 from "../assets/event3.jpg";
-import Img4 from "../assets/event4.jpg";
-import Img5 from "../assets/event5.jpg";
+import Img1 from "../assets/Event1.jpg";
+import Img2 from "../assets/Event2.jpg";
+import Img3 from "../assets/Event3.jpg";
+import Img4 from "../assets/Event4.jpg";
+import Img5 from "../assets/Event5.jpg";
 import Footer from "./Footer";
 
 const images = [Img1, Img2, Img3, Img4, Img5];
