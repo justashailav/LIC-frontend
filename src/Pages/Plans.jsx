@@ -51,6 +51,7 @@ export default function AdminPlans() {
     popularValue: "",
     popularButtonText: "View Plans",
     popularBg: "from-gray-50 to-white",
+    image: null,
   });
 
   useEffect(() => {
@@ -64,6 +65,13 @@ export default function AdminPlans() {
       [name]: type === "checkbox" ? checked : value,
     });
   };
+  const handleImageChange = (e) => {
+  setForm({
+    ...form,
+    image: e.target.files[0],
+  });
+};
+
 
   const handleEdit = (plan) => {
     setEditingId(plan._id);
@@ -238,6 +246,23 @@ export default function AdminPlans() {
               onChange={handleChange}
               className="w-full rounded-lg border px-4 py-3"
             />
+            <div>
+  <label className="block mb-1 font-medium">Plan Image</label>
+  <input
+    type="file"
+    accept="image/*"
+    onChange={handleImageChange}
+    className="w-full rounded-lg border px-4 py-3"
+  />
+</div>
+{form.image && (
+  <img
+    src={URL.createObjectURL(form.image)}
+    alt="Preview"
+    className="mt-3 h-32 rounded-lg object-cover"
+  />
+)}
+
             <textarea
                 name="benefits"
                 placeholder="Benefits (comma separated)"
