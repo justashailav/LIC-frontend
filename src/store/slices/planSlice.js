@@ -110,7 +110,7 @@ export const createPlan = (data) => async (dispatch) => {
     const res = await axios.post(
       `${import.meta.env.VITE_API_BASE_URL}/api/v1/admin/plan-categories`,
       data,
-      { withCredentials: true }
+     
     );
 
     dispatch(planSlice.actions.createPlanSuccess(res.data));
