@@ -5,6 +5,7 @@ import AwardImg from "../assets/AwardsImg.jpg";
 import SeminarImg from "../assets/SeminarImg.jpeg";
 import { motion } from "framer-motion";
 import Footer from "./Footer";
+import { Helmet } from "react-helmet";
 const fadeUp = {
   hidden: { opacity: 0, y: 40 },
   visible: {
@@ -43,7 +44,24 @@ const containerVariants = {
 
 export default function About() {
   return (
-    <div className="w-full text-gray-800">
+    <>
+    <Helmet>
+        <title>About | Tejkavi Future Insurance - LIC Advisor</title>
+        <meta
+          name="description"
+          content="Meet your trusted LIC advisor in Jharkhand. 5+ years experience, 200+ happy clients, personalized insurance and claim support assistance."
+        />
+        <meta
+          name="keywords"
+          content="LIC Advisor Jharkhand, Life Insurance, LIC Plans, Tejkavi Future Insurance"
+        />
+        <meta property="og:title" content="About Tejkavi Future Insurance" />
+        <meta
+          property="og:description"
+          content="Professional LIC advisor providing life, child, retirement & savings plans with full claim support."
+        />
+      </Helmet>
+      <div className="w-full text-gray-800">
       {/* HERO ABOUT SECTION */}
       <motion.section
         className="bg-gradient-to-r from-blue-50 to-blue-100 px-6 py-16 md:px-20"
@@ -183,5 +201,6 @@ export default function About() {
       </motion.section>
       <Footer/>
     </div>
+    </>
   );
 }

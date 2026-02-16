@@ -44,7 +44,39 @@ export default function PlanDetails() {
 
   /* ================= UI ================= */
   return (
-    <div>
+    <>
+      <Helmet>
+      <title>
+        {singlePlan.title} | LIC Plan - Tejkavi Future Insurance
+      </title>
+
+      <meta
+        name="description"
+        content={
+          singlePlan.description?.slice(0, 150) ||
+          "LIC insurance plan details, benefits and eligibility. Get expert guidance from a trusted LIC advisor."
+        }
+      />
+
+      <meta
+        name="keywords"
+        content={`${singlePlan.title}, LIC Plan, Life Insurance, LIC Advisor Jharkhand`}
+      />
+
+      <meta
+        property="og:title"
+        content={`${singlePlan.title} - LIC Plan Details`}
+      />
+
+      <meta
+        property="og:description"
+        content={singlePlan.description?.slice(0, 150)}
+      />
+
+      <meta property="og:type" content="article" />
+    </Helmet>
+
+      <div>
       <section className="max-w-6xl mx-auto px-4 sm:px-6 md:px-20 py-10 sm:py-14">
       {/* HERO */}
       <div className="mb-8 sm:mb-14">
@@ -137,6 +169,7 @@ export default function PlanDetails() {
     </section>
     <Footer/>
     </div>
+    </>
     
   );
 }

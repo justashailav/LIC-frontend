@@ -52,7 +52,28 @@ const Achievements = () => {
   }, []);
 
   return (
-    <div className="w-full bg-white text-gray-800">
+    <>
+      <Helmet>
+      <title>Achievements | Tejkavi Future Insurance - LIC Advisor</title>
+
+      <meta
+        name="description"
+        content="Explore professional achievements, seminars, awards, and events of Tejkavi Future Insurance. Trusted LIC advisor serving Jharkhand with dedication and excellence."
+      />
+
+      <meta
+        name="keywords"
+        content="LIC Advisor Achievements, LIC Awards, Insurance Seminar, Tejkavi Future Insurance, LIC Jharkhand"
+      />
+
+      <meta property="og:title" content="Achievements - Tejkavi Future Insurance" />
+
+      <meta
+        property="og:description"
+        content="View awards, professional events and achievements of your trusted LIC advisor."
+      />
+    </Helmet>
+      <div className="w-full bg-white text-gray-800">
 
       {/* HEADER */}
       <section className="bg-blue-50 py-16 px-6 md:px-20 text-center">
@@ -164,6 +185,7 @@ const Achievements = () => {
       </AnimatePresence>
       <Footer/>
     </div>
+    </>
   );
 };
 

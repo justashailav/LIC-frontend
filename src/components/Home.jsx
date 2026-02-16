@@ -49,7 +49,32 @@ const Home = () => {
   };
 
   return (
-    <motion.div variants={fadeUp} className="w-full text-gray-800">
+   <>
+      <Helmet>
+      <title>Tejkavi Future Insurance | Trusted LIC Advisor in Jharkhand</title>
+
+      <meta
+        name="description"
+        content="Trusted LIC Advisor in Jharkhand offering Life Insurance, Child Plans, Retirement and Savings solutions with complete claim support. Secure your family’s future today."
+      />
+
+      <meta
+        name="keywords"
+        content="LIC Advisor Jharkhand, Life Insurance, LIC Plans, Retirement Plan, Child Education Plan, Tejkavi Future Insurance"
+      />
+
+      <meta property="og:title" content="Tejkavi Future Insurance - LIC Advisor" />
+
+      <meta
+        property="og:description"
+        content="Expert guidance on LIC policies with dedicated claim support and personalized advice."
+      />
+
+      <meta property="og:type" content="website" />
+      <meta property="og:image" content="/HeroImage.jpg" />
+    </Helmet>
+
+     <motion.div variants={fadeUp} className="w-full text-gray-800">
       <section className="bg-gradient-to-r from-blue-50 to-blue-100 px-4 sm:px-6 py-16 md:px-20 md:py-20">
         <motion.div
           variants={fadeUp}
@@ -419,6 +444,7 @@ const Home = () => {
       </motion.section>
       <Footer/>
     </motion.div>
+   </>
   );
 };
 

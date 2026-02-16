@@ -58,7 +58,31 @@ Message: ${formData.message}`;
   };
 
   return (
-    <div className="w-full text-gray-800">
+    <>
+       <Helmet>
+      <title>Contact | Tejkavi Future Insurance - LIC Advisor</title>
+
+      <meta
+        name="description"
+        content="Contact Tejkavi Future Insurance, trusted LIC advisor in Jharkhand. Get guidance on life insurance, child plans, retirement solutions and claim support."
+      />
+
+      <meta
+        name="keywords"
+        content="Contact LIC Advisor, LIC Jharkhand, Insurance Advisor Ramgarh, Tejkavi Future Insurance"
+      />
+
+      <meta
+        property="og:title"
+        content="Contact Tejkavi Future Insurance"
+      />
+
+      <meta
+        property="og:description"
+        content="Get in touch for LIC plans, financial security and personalized insurance guidance."
+      />
+    </Helmet>
+      <div className="w-full text-gray-800">
       {/* HEADER */}
       <motion.section
         className="bg-blue-50 py-12 sm:py-16 px-4 sm:px-6 md:px-20 text-center"
@@ -190,6 +214,7 @@ Message: ${formData.message}`;
       </section>
       <Footer/>
     </div>
+    </>
   );
 };
 

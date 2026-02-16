@@ -34,7 +34,33 @@ const Plans = () => {
   }, [dispatch]);
 
   return (
-    <div className="bg-gray-50 min-h-screen">
+    <>
+       <Helmet>
+      <title>LIC Insurance Plans | Tejkavi Future Insurance</title>
+
+      <meta
+        name="description"
+        content="Explore LIC insurance plans including life insurance, child education plans, retirement and savings solutions. Get expert guidance from a trusted LIC advisor in Jharkhand."
+      />
+
+      <meta
+        name="keywords"
+        content="LIC Insurance Plans, Best LIC Plans, LIC Advisor Jharkhand, LIC Policies, Life Insurance Plans"
+      />
+
+      <meta
+        property="og:title"
+        content="LIC Insurance Plans - Tejkavi Future Insurance"
+      />
+
+      <meta
+        property="og:description"
+        content="Browse LIC plans designed to secure your family’s financial future."
+      />
+
+      <meta property="og:type" content="website" />
+    </Helmet>
+      <div className="bg-gray-50 min-h-screen">
       {/* HEADER */}
       <motion.section
         className="bg-gradient-to-r from-blue-50 to-blue-100 px-6 py-16"
@@ -110,6 +136,7 @@ const Plans = () => {
       </section>
       <Footer/>
     </div>
+    </>
   );
 };
 
