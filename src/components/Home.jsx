@@ -177,8 +177,9 @@ const Home = () => {
         <div className="relative">
   <div
     className="
-      flex gap-4 overflow-x-auto pb-4
+      flex gap-5 overflow-x-auto pb-6 px-1
       snap-x snap-mandatory
+      scrollbar-hide
       sm:grid sm:grid-cols-2
       md:grid-cols-4
       sm:overflow-visible
@@ -196,35 +197,36 @@ const Home = () => {
         whileHover={{ scale: 1.03 }}
         onClick={() => navigate(`/plans/${plan.slug}`)}
         className="
-          snap-start
-          min-w-[80%] sm:min-w-0
-          cursor-pointer
-          border rounded-2xl
+          snap-center
+          min-w-[85%] sm:min-w-0
           bg-white
-          shadow-sm hover:shadow-xl
+          rounded-2xl
+          shadow-md hover:shadow-xl
+          border border-gray-100
           transition-all duration-300
           flex flex-col
           overflow-hidden
+          cursor-pointer
         "
       >
         {/* IMAGE */}
         {plan.image && (
-          <div className="w-full h-44 overflow-hidden">
+          <div className="w-full aspect-[4/3] overflow-hidden">
             <img
               src={plan.image}
               alt={plan.title}
-              className="w-full h-full object-cover transition-transform duration-500 hover:scale-110"
+              className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
             />
           </div>
         )}
 
         {/* CONTENT */}
-        <div className="p-6 flex flex-col flex-1 text-center">
-          <h3 className="font-semibold text-lg mb-3">
+        <div className="p-5 flex flex-col flex-1 text-center">
+          <h3 className="font-semibold text-lg mb-2">
             {plan.title}
           </h3>
 
-          <p className="text-gray-600 text-sm mb-6 line-clamp-3 flex-1">
+          <p className="text-gray-600 text-sm mb-4 line-clamp-3 flex-1">
             {plan.description}
           </p>
 
