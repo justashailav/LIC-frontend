@@ -53,7 +53,7 @@ const Home = () => {
       <section className="bg-gradient-to-r from-blue-50 to-blue-100 px-4 sm:px-6 py-16 md:px-20 md:py-20">
         <motion.div
           variants={fadeUp}
-          className="max-w-7xl mx-auto grid md:grid-cols-2 gap-10 items-center"
+          className="max-w-6xl mx-auto grid md:grid-cols-2 gap-10 items-center"
         >
           <motion.div
             className="text-center md:text-left"
@@ -169,7 +169,7 @@ const Home = () => {
         md:grid-cols-4
         sm:overflow-visible
         sm:snap-none
-        max-w-7xl mx-auto
+        max-w-6xl mx-auto
       "
           >
             {plans.map((plan, index) => (
@@ -222,7 +222,7 @@ const Home = () => {
         transition={{ duration: 0.6 }}
         className="bg-gray-50 py-16 px-4 sm:px-6 md:px-20 md:py-20"
       >
-        <div className="max-w-7xl mx-auto">
+        <div className="max-w-6xl mx-auto">
           <div className="flex items-center justify-between mb-10">
             <h2 className="text-2xl sm:text-4xl font-bold text-gray-900">
               Our Popular Insurance Plans
