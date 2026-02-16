@@ -113,7 +113,7 @@ const Home = () => {
               className="flex gap-4 flex-col sm:flex-row justify-center md:justify-start"
             >
               <a
-                href="tel:9876543210"
+                href="tel:7004942500"
                 className="bg-blue-600 hover:bg-blue-700 transition text-white px-6 sm:px-8 py-3 rounded-lg font-medium shadow text-center"
               >
                 📞 Call Now
