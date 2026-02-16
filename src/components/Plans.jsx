@@ -97,16 +97,17 @@ const Plans = () => {
             animate="visible"
           >
             {plans.map((plan) => (
-              <motion.div
-                key={plan._id}
-                variants={fadeUp}
-                whileHover={{ y: -8, scale: 1.02 }}
-                transition={{ type: "spring", stiffness: 200 }}
-                className="bg-white rounded-2xl p-6 shadow-sm hover:shadow-xl transition cursor-pointer"
-                onClick={() => navigate(`/plans/${plan.slug}`)}
-              >
-                {plan.image && (
-      <div className="w-full aspect-[4/3] overflow-hidden">
+  <motion.div
+    key={plan._id}
+    variants={fadeUp}
+    whileHover={{ y: -6 }}
+    transition={{ type: "spring", stiffness: 180 }}
+    className="bg-white rounded-2xl shadow-sm hover:shadow-xl transition overflow-hidden flex flex-col cursor-pointer"
+    onClick={() => navigate(`/plans/${plan.slug}`)}
+  >
+    {/* IMAGE */}
+    {plan.image && (
+      <div className="relative w-full h-48 overflow-hidden">
         <img
           src={plan.image}
           alt={plan.title}
@@ -114,21 +115,30 @@ const Plans = () => {
         />
       </div>
     )}
-                <h2 className="text-xl font-semibold mb-3 text-gray-900">
-                  {plan.title}
-                </h2>
 
-                <p className="text-gray-600 mb-6 line-clamp-3">
-                  {plan.description}
-                </p>
+    {/* CONTENT */}
+    <div className="p-6 flex flex-col flex-1">
+      <h2 className="text-lg font-semibold mb-3 text-gray-900">
+        {plan.title}
+      </h2>
 
-                <div className="flex items-center justify-between">
-                  <span className="text-sm text-gray-500">Learn more</span>
+      <p className="text-gray-600 text-sm mb-6 line-clamp-3 flex-1">
+        {plan.description}
+      </p>
 
-                  <span className="text-blue-600 font-medium">View Plan →</span>
-                </div>
-              </motion.div>
-            ))}
+      <div className="flex items-center justify-between mt-auto">
+        <span className="text-sm text-gray-500">
+          Learn more
+        </span>
+
+        <span className="text-blue-600 font-medium">
+          View Plan →
+        </span>
+      </div>
+    </div>
+  </motion.div>
+))}
+
           </motion.div>
 
           {/* EMPTY STATE */}
