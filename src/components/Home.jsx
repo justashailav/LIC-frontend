@@ -174,85 +174,59 @@ const Home = () => {
             </div>
           </motion.div>
         </section>
-        <motion.section
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="px-4 sm:px-6 py-16 md:px-20 md:py-20"
-        >
-          <h2 className="text-2xl sm:text-3xl font-bold text-center mb-8">
-            LIC Insurance Plans We Offer
-          </h2>
+        <motion.div
+  key={plan._id}
+  initial={{ opacity: 0, y: 40 }}
+  whileInView={{ opacity: 1, y: 0 }}
+  viewport={{ once: true }}
+  transition={{ duration: 0.5, delay: index * 0.1 }}
+  whileHover={{ scale: 1.03 }}
+  onClick={() => navigate(`/plans/${plan.slug}`)}
+  className="
+    snap-start
+    min-w-[80%] sm:min-w-0
+    cursor-pointer
+    border rounded-2xl
+    bg-white
+    shadow-sm hover:shadow-xl
+    transition-all duration-300
+    flex flex-col
+    overflow-hidden
+  "
+>
+  {/* IMAGE */}
+  {plan.image && (
+    <div className="w-full h-44 overflow-hidden">
+      <img
+        src={plan.image}
+        alt={plan.title}
+        className="w-full h-full object-cover transition-transform duration-500 hover:scale-110"
+      />
+    </div>
+  )}
 
-          {loading && (
-            <p className="text-center text-gray-500">Loading plans...</p>
-          )}
+  {/* CONTENT */}
+  <div className="p-6 flex flex-col flex-1 text-center">
+    <h3 className="font-semibold text-lg mb-3">
+      {plan.title}
+    </h3>
 
-          {error && <p className="text-center text-red-500">{error}</p>}
+    <p className="text-gray-600 text-sm mb-6 line-clamp-3 flex-1">
+      {plan.description}
+    </p>
 
-          <div className="relative">
-            <div
-              className="
-        flex gap-4 overflow-x-auto pb-4
-        snap-x snap-mandatory
-        sm:grid sm:grid-cols-2
-        md:grid-cols-4
-        sm:overflow-visible
-        sm:snap-none
-        max-w-6xl mx-auto
-      "
-            >
-              {plans.map((plan, index) => (
-                <motion.div
-                  key={plan._id}
-                  initial={{ opacity: 0, y: 40 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
-                  whileHover={{ scale: 1.05 }}
-                  onClick={() => navigate(`/plans/${plan.slug}`)}
-                  className="
-            snap-start
-            min-w-[80%] sm:min-w-0
-            cursor-pointer
-            border rounded-2xl
-            p-6 sm:p-8
-            text-center
-            bg-white
-            shadow-sm
-            hover:shadow-lg
-            hover:-translate-y-1
-          "
-                >
-                  {plan.image && (
-                    <img
-                      src={plan.image}
-                      alt={plan.title}
-                      className="h-40 w-full object-cover rounded-xl mb-3"
-                    />
-                  )}
+    <button
+      onClick={(e) => {
+        e.stopPropagation();
+        handleWhatsApp(plan);
+      }}
+      className="text-green-600 font-medium hover:underline mt-auto"
+    >
+      Enquire Now →
+    </button>
+  </div>
+</motion.div>
 
-                  <h3 className="font-semibold text-lg mb-4">{plan.title}</h3>
-
-                  <p className="text-gray-600 text-sm mb-6 line-clamp-3">
-                    {plan.description}
-                  </p>
-
-                  <button
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      handleWhatsApp(plan);
-                    }}
-                    className="text-green-600 font-medium hover:underline"
-                  >
-                    Enquire Now →
-                  </button>
-                </motion.div>
-              ))}
-            </div>
-          </div>
-        </motion.section>
 
         <motion.section
           initial={{ opacity: 0, y: 30 }}

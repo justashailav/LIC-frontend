@@ -189,19 +189,25 @@ export const updatePlan = ({ id, data }) => async (dispatch) => {
 
     const res = await axios.put(
       `${import.meta.env.VITE_API_BASE_URL}/api/v1/admin/plan-categories/${id}`,
-      data,
-      { withCredentials: true }
+      data, // already FormData
+      {
+        withCredentials: true,
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      }
     );
 
     dispatch(planSlice.actions.updatePlanSuccess(res.data));
   } catch (error) {
     dispatch(
       planSlice.actions.updatePlanFail(
-        error?.response?.data?.message || "Failed to update plan"
+        error?.response?.data?.message || "Update failed"
       )
     );
   }
 };
+
 
 export const deletePlan = (id) => async (dispatch) => {
   try {

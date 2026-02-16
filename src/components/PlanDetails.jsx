@@ -80,19 +80,32 @@ export default function PlanDetails() {
       <div>
       <section className="max-w-6xl mx-auto px-4 sm:px-6 md:px-20 py-10 sm:py-14">
       {/* HERO */}
-      <div className="mb-8 sm:mb-14">
-        <p className="text-xs font-semibold text-[#B11226] tracking-wide uppercase mb-2">
-          LIC Insurance Plan
-        </p>
+      {/* HERO */}
+<div className="mb-8 sm:mb-14">
+  <p className="text-xs font-semibold text-[#B11226] tracking-wide uppercase mb-2">
+    LIC Insurance Plan
+  </p>
 
-        <h1 className="text-2xl sm:text-4xl font-bold mb-3">
-          {singlePlan.title}
-        </h1>
+  <h1 className="text-2xl sm:text-4xl font-bold mb-4">
+    {singlePlan.title}
+  </h1>
 
-        <p className="text-gray-600 text-sm sm:text-lg leading-relaxed">
-          {singlePlan.description}
-        </p>
-      </div>
+  {/* PLAN IMAGE */}
+  {singlePlan.image && (
+    <div className="w-full h-56 sm:h-72 md:h-80 mb-6 rounded-2xl overflow-hidden shadow-md">
+      <img
+        src={singlePlan.image}
+        alt={singlePlan.title}
+        className="w-full h-full object-cover"
+      />
+    </div>
+  )}
+
+  <p className="text-gray-600 text-sm sm:text-lg leading-relaxed">
+    {singlePlan.description}
+  </p>
+</div>
+
 
       {/* CONTENT */}
       <div className="grid lg:grid-cols-3 gap-10">
