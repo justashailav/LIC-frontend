@@ -105,6 +105,15 @@ const Plans = () => {
                 className="bg-white rounded-2xl p-6 shadow-sm hover:shadow-xl transition cursor-pointer"
                 onClick={() => navigate(`/plans/${plan.slug}`)}
               >
+                {plan.image && (
+      <div className="w-full aspect-[4/3] overflow-hidden">
+        <img
+          src={plan.image}
+          alt={plan.title}
+          className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
+        />
+      </div>
+    )}
                 <h2 className="text-xl font-semibold mb-3 text-gray-900">
                   {plan.title}
                 </h2>
