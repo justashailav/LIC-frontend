@@ -1,24 +1,26 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Logo from "../assets/LogoImg.png";
 
 const Navbar = () => {
   const [open, setOpen] = useState(false);
-  const [clickCount, setClickCount] = useState(0);
+  const clickCount = useRef(0);
   const navigate = useNavigate();
 
   const handleLogoClick = () => {
-    setClickCount((prev) => {
-      const newCount = prev + 1;
+  let count = parseInt(localStorage.getItem("logoClicks") || "0");
 
-      if (newCount === 5) {
-        navigate("/admin-login");
-        return 0; // reset after redirect
-      }
+  count += 1;
 
-      return newCount;
-    });
-  };
+  if (count === 5) {
+    localStorage.setItem("logoClicks", "0");
+    navigate("/admin-login");
+  } else {
+    localStorage.setItem("logoClicks", count.toString());
+  }
+};
+
+
 
   return (
     <>
@@ -27,20 +29,19 @@ const Navbar = () => {
           <div className="flex items-center justify-between h-16">
 
             {/* LOGO */}
-            <Link
-              to="/"
+            <div
               onClick={handleLogoClick}
-              className="flex items-center gap-3"
+              className="flex items-center gap-3 cursor-pointer"
             >
               <img
                 src={Logo}
                 alt="LIC Advisor Logo"
-                className="h-22 w-auto object-contain"
+                className="h-16 w-auto object-contain"
               />
               <span className="text-xl font-semibold text-blue-700 tracking-wide">
                 Tejkavi Future Insurance
               </span>
-            </Link>
+            </div>
 
             {/* DESKTOP MENU */}
             <div className="hidden md:flex items-center gap-8 font-medium">
@@ -84,17 +85,16 @@ const Navbar = () => {
       >
         {/* HEADER */}
         <div className="flex items-center justify-between px-6 h-16 border-b">
-          <Link
-            to="/"
+          <div
             onClick={handleLogoClick}
-            className="flex items-center gap-3"
+            className="flex items-center gap-3 cursor-pointer"
           >
             <img
               src={Logo}
               alt="LIC Advisor Logo"
-              className="h-22 w-auto object-contain"
+              className="h-16 w-auto object-contain"
             />
-          </Link>
+          </div>
 
           <button
             className="text-3xl text-gray-800"
