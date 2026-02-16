@@ -63,7 +63,7 @@ const Achievements = () => {
 
       {/* MASONRY GALLERY */}
       <section className="px-6 py-20 md:px-20">
-        <div className="max-w-7xl mx-auto columns-1 sm:columns-2 md:columns-3 gap-6 space-y-6">
+        <div className="max-w-6xl mx-auto columns-1 sm:columns-2 md:columns-3 gap-6 space-y-6">
 
           {images.map((img, index) => (
             <motion.div

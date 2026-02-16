@@ -55,7 +55,7 @@ const Plans = () => {
 
       {/* CONTENT */}
       <section className="px-6 py-20">
-        <div className="max-w-7xl mx-auto">
+        <div className="max-w-6xl mx-auto">
           {loading && (
             <p className="text-center text-gray-500">Loading plans...</p>
           )}
