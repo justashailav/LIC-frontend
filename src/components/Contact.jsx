@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import Footer from "./Footer";
+import { Helmet } from "react-helmet";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 40 },

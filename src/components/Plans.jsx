@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import Footer from "./Footer";
+import { Helmet } from "react-helmet";
 
 const containerVariants = {
   hidden: {},

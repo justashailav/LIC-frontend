@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import HeroImage from "../assets/HeroImage.jpg";
 import { motion} from "framer-motion";
 import Footer from "./Footer";
+import { Helmet } from "react-helmet";
 const fadeUp = {
   hidden: { opacity: 0, y: 40 },
   visible: {

@@ -7,6 +7,7 @@ import Img3 from "../assets/Event3.jpg";
 import Img4 from "../assets/Event4.jpg";
 import Img5 from "../assets/Event5.jpg";
 import Footer from "./Footer";
+import { Helmet } from "react-helmet";
 
 const images = [Img1, Img2, Img3, Img4, Img5];
 

@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import Footer from "./Footer";
+import { Helmet } from "react-helmet";
 
 export default function PlanDetails() {
   const { slug } = useParams();
