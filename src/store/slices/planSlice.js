@@ -109,8 +109,13 @@ export const createPlan = (data) => async (dispatch) => {
 
     const res = await axios.post(
       `${import.meta.env.VITE_API_BASE_URL}/api/v1/admin/plan-categories`,
-      data,
-      { withCredentials: true }
+      data, // this is already FormData now
+      {
+        withCredentials: true,
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      }
     );
 
     dispatch(planSlice.actions.createPlanSuccess(res.data));
@@ -122,6 +127,7 @@ export const createPlan = (data) => async (dispatch) => {
     );
   }
 };
+
 
 export const getAllPlans = () => async (dispatch) => {
   try {
