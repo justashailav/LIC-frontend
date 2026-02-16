@@ -66,12 +66,11 @@ export default function AdminPlans() {
     });
   };
   const handleImageChange = (e) => {
-  setForm({
-    ...form,
-    image: e.target.files[0],
-  });
-};
-
+    setForm({
+      ...form,
+      image: e.target.files[0],
+    });
+  };
 
   const handleEdit = (plan) => {
     setEditingId(plan._id);
@@ -247,39 +246,39 @@ export default function AdminPlans() {
               className="w-full rounded-lg border px-4 py-3"
             />
             <div>
-  <label className="block mb-1 font-medium">Plan Image</label>
-  <input
-    type="file"
-    accept="image/*"
-    onChange={handleImageChange}
-    className="w-full rounded-lg border px-4 py-3"
-  />
-</div>
-{form.image && (
-  <img
-    src={URL.createObjectURL(form.image)}
-    alt="Preview"
-    className="mt-3 h-32 rounded-lg object-cover"
-  />
-)}
+              <label className="block mb-1 font-medium">Plan Image</label>
+              <input
+                type="file"
+                accept="image/*"
+                onChange={handleImageChange}
+                className="w-full rounded-lg border px-4 py-3"
+              />
+            </div>
+            {form.image && (
+              <img
+                src={URL.createObjectURL(form.image)}
+                alt="Preview"
+                className="mt-3 h-32 rounded-lg object-cover"
+              />
+            )}
 
             <textarea
-                name="benefits"
-                placeholder="Benefits (comma separated)"
-                value={form.benefits}
-                onChange={handleChange}
-                rows={3}
-                className="w-full rounded-lg border px-4 py-3"
-              />
+              name="benefits"
+              placeholder="Benefits (comma separated)"
+              value={form.benefits}
+              onChange={handleChange}
+              rows={3}
+              className="w-full rounded-lg border px-4 py-3"
+            />
 
-              <textarea
-                name="whoShouldBuy"
-                placeholder="Who should buy this plan? (comma separated)"
-                value={form.whoShouldBuy}
-                onChange={handleChange}
-                rows={3}
-                className="w-full rounded-lg border px-4 py-3"
-              />
+            <textarea
+              name="whoShouldBuy"
+              placeholder="Who should buy this plan? (comma separated)"
+              value={form.whoShouldBuy}
+              onChange={handleChange}
+              rows={3}
+              className="w-full rounded-lg border px-4 py-3"
+            />
 
             {/* POPULAR TOGGLE */}
             <label className="flex items-center gap-2">

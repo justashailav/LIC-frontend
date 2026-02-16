@@ -220,6 +220,14 @@ const Home = () => {
             hover:-translate-y-1
           "
               >
+               {plan.image && (
+  <img
+    src={plan.image}
+    alt={plan.title}
+    className="h-40 w-full object-cover rounded-xl mb-3"
+  />
+)}
+
                 <h3 className="font-semibold text-lg mb-4">{plan.title}</h3>
 
                 <p className="text-gray-600 text-sm mb-6 line-clamp-3">
