@@ -174,9 +174,9 @@ const Home = () => {
             </div>
           </motion.div>
         </section>
-        <div className="relative mt-12 sm:mt-16 md:mt-20">
-  <div
-    className="
+        <div className="relative mt-12 sm:mt-16 md:mt-20 p-6">
+          <div
+            className="
       flex gap-5 overflow-x-auto pb-6 px-1
       snap-x snap-mandatory
       scrollbar-hide
@@ -186,17 +186,17 @@ const Home = () => {
       sm:snap-none
       max-w-6xl mx-auto
     "
-  >
-    {plans.map((plan, index) => (
-      <motion.div
-        key={plan._id}
-        initial={{ opacity: 0, y: 40 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.5, delay: index * 0.1 }}
-        whileHover={{ scale: 1.03 }}
-        onClick={() => navigate(`/plans/${plan.slug}`)}
-        className="
+          >
+            {plans.map((plan, index) => (
+              <motion.div
+                key={plan._id}
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                whileHover={{ scale: 1.03 }}
+                onClick={() => navigate(`/plans/${plan.slug}`)}
+                className="
           snap-center
           min-w-[85%] sm:min-w-0
           bg-white
@@ -208,43 +208,40 @@ const Home = () => {
           overflow-hidden
           cursor-pointer
         "
-      >
-        {/* IMAGE */}
-        {plan.image && (
-          <div className="w-full aspect-[4/3] overflow-hidden">
-            <img
-              src={plan.image}
-              alt={plan.title}
-              className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
-            />
+              >
+                {/* IMAGE */}
+                {plan.image && (
+                  <div className="w-full aspect-[4/3] overflow-hidden">
+                    <img
+                      src={plan.image}
+                      alt={plan.title}
+                      className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
+                    />
+                  </div>
+                )}
+
+                {/* CONTENT */}
+                <div className="p-5 flex flex-col flex-1 text-center">
+                  <h3 className="font-semibold text-lg mb-2">{plan.title}</h3>
+
+                  <p className="text-gray-600 text-sm mb-4 line-clamp-3 flex-1">
+                    {plan.description}
+                  </p>
+
+                  <button
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      handleWhatsApp(plan);
+                    }}
+                    className="text-green-600 font-medium hover:underline mt-auto"
+                  >
+                    Enquire Now →
+                  </button>
+                </div>
+              </motion.div>
+            ))}
           </div>
-        )}
-
-        {/* CONTENT */}
-        <div className="p-5 flex flex-col flex-1 text-center">
-          <h3 className="font-semibold text-lg mb-2">
-            {plan.title}
-          </h3>
-
-          <p className="text-gray-600 text-sm mb-4 line-clamp-3 flex-1">
-            {plan.description}
-          </p>
-
-          <button
-            onClick={(e) => {
-              e.stopPropagation();
-              handleWhatsApp(plan);
-            }}
-            className="text-green-600 font-medium hover:underline mt-auto"
-          >
-            Enquire Now →
-          </button>
         </div>
-      </motion.div>
-    ))}
-  </div>
-</div>
-
 
         <motion.section
           initial={{ opacity: 0, y: 30 }}

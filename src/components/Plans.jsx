@@ -36,126 +36,126 @@ const Plans = () => {
 
   return (
     <>
-       <Helmet>
-      <title>LIC Insurance Plans | Tejkavi Future Insurance</title>
+      <Helmet>
+        <title>LIC Insurance Plans | Tejkavi Future Insurance</title>
 
-      <meta
-        name="description"
-        content="Explore LIC insurance plans including life insurance, child education plans, retirement and savings solutions. Get expert guidance from a trusted LIC advisor in Jharkhand."
-      />
-
-      <meta
-        name="keywords"
-        content="LIC Insurance Plans, Best LIC Plans, LIC Advisor Jharkhand, LIC Policies, Life Insurance Plans"
-      />
-
-      <meta
-        property="og:title"
-        content="LIC Insurance Plans - Tejkavi Future Insurance"
-      />
-
-      <meta
-        property="og:description"
-        content="Browse LIC plans designed to secure your family’s financial future."
-      />
-
-      <meta property="og:type" content="website" />
-    </Helmet>
-      <div className="bg-gray-50 min-h-screen">
-      {/* HEADER */}
-      <motion.section
-        className="bg-gradient-to-r from-blue-50 to-blue-100 px-6 py-16"
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true }}
-      >
-        <motion.div className="max-w-6xl mx-auto text-center" variants={fadeUp}>
-          <h1 className="text-4xl font-bold text-gray-900 mb-4">
-            LIC Insurance Plans
-          </h1>
-          <p className="text-gray-700 max-w-3xl mx-auto">
-            Explore a wide range of LIC insurance plans designed to secure your
-            family’s future, savings, and retirement goals.
-          </p>
-        </motion.div>
-      </motion.section>
-
-      {/* CONTENT */}
-      <section className="px-6 py-20">
-        <div className="max-w-6xl mx-auto">
-          {loading && (
-            <p className="text-center text-gray-500">Loading plans...</p>
-          )}
-
-          {error && <p className="text-center text-red-500">{error}</p>}
-
-          {/* PLANS GRID */}
-          <motion.div
-            className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3"
-            variants={containerVariants}
-            initial="hidden"
-            animate="visible"
-          >
-            {plans.map((plan) => (
-  <motion.div
-    key={plan._id}
-    variants={fadeUp}
-    whileHover={{ y: -6 }}
-    transition={{ type: "spring", stiffness: 180 }}
-    className="bg-white rounded-2xl shadow-sm hover:shadow-xl transition overflow-hidden flex flex-col cursor-pointer"
-    onClick={() => navigate(`/plans/${plan.slug}`)}
-  >
-    {/* IMAGE */}
-    {plan.image && (
-      <div className="relative w-full h-48 overflow-hidden">
-        <img
-          src={plan.image}
-          alt={plan.title}
-          className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
+        <meta
+          name="description"
+          content="Explore LIC insurance plans including life insurance, child education plans, retirement and savings solutions. Get expert guidance from a trusted LIC advisor in Jharkhand."
         />
-      </div>
-    )}
 
-    {/* CONTENT */}
-    <div className="p-6 flex flex-col flex-1">
-      <h2 className="text-lg font-semibold mb-3 text-gray-900">
-        {plan.title}
-      </h2>
+        <meta
+          name="keywords"
+          content="LIC Insurance Plans, Best LIC Plans, LIC Advisor Jharkhand, LIC Policies, Life Insurance Plans"
+        />
 
-      <p className="text-gray-600 text-sm mb-6 line-clamp-3 flex-1">
-        {plan.description}
-      </p>
+        <meta
+          property="og:title"
+          content="LIC Insurance Plans - Tejkavi Future Insurance"
+        />
 
-      <div className="flex items-center justify-between mt-auto">
-        <span className="text-sm text-gray-500">
-          Learn more
-        </span>
+        <meta
+          property="og:description"
+          content="Browse LIC plans designed to secure your family’s financial future."
+        />
 
-        <span className="text-blue-600 font-medium">
-          View Plan →
-        </span>
-      </div>
-    </div>
-  </motion.div>
-))}
-
+        <meta property="og:type" content="website" />
+      </Helmet>
+      <div className="bg-gray-50 min-h-screen">
+        {/* HEADER */}
+        <motion.section
+          className="bg-gradient-to-r from-blue-50 to-blue-100 px-6 py-16"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+        >
+          <motion.div
+            className="max-w-6xl mx-auto text-center"
+            variants={fadeUp}
+          >
+            <h1 className="text-4xl font-bold text-gray-900 mb-4">
+              LIC Insurance Plans
+            </h1>
+            <p className="text-gray-700 max-w-3xl mx-auto">
+              Explore a wide range of LIC insurance plans designed to secure
+              your family’s future, savings, and retirement goals.
+            </p>
           </motion.div>
+        </motion.section>
 
-          {/* EMPTY STATE */}
-          {!loading && plans.length === 0 && (
-            <motion.p
-              variants={fadeUp}
+        {/* CONTENT */}
+        <section className="px-6 py-20">
+          <div className="max-w-6xl mx-auto">
+            {loading && (
+              <p className="text-center text-gray-500">Loading plans...</p>
+            )}
+
+            {error && <p className="text-center text-red-500">{error}</p>}
+
+            {/* PLANS GRID */}
+            <motion.div
+              className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3"
+              variants={containerVariants}
               initial="hidden"
               animate="visible"
-              className="text-center text-gray-500 mt-8"
             >
-              No plans available at the moment.
-            </motion.p>
-          )}
-        </div>
-      </section>
-      <Footer/>
-    </div>
+              {plans.map((plan) => (
+                <motion.div
+                  key={plan._id}
+                  variants={fadeUp}
+                  whileHover={{ y: -6 }}
+                  transition={{ type: "spring", stiffness: 180 }}
+                  className="bg-white rounded-2xl shadow-sm hover:shadow-xl transition overflow-hidden flex flex-col cursor-pointer"
+                  onClick={() => navigate(`/plans/${plan.slug}`)}
+                >
+                  {/* IMAGE */}
+                  {plan.image && (
+                    <div className="relative w-full h-48 overflow-hidden">
+                      <img
+                        src={plan.image}
+                        alt={plan.title}
+                        className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
+                      />
+                    </div>
+                  )}
+
+                  {/* CONTENT */}
+                  <div className="p-6 flex flex-col flex-1">
+                    <h2 className="text-lg font-semibold mb-3 text-gray-900">
+                      {plan.title}
+                    </h2>
+
+                    <p className="text-gray-600 text-sm mb-6 line-clamp-3 flex-1">
+                      {plan.description}
+                    </p>
+
+                    <div className="flex items-center justify-between mt-auto">
+                      <span className="text-sm text-gray-500">Learn more</span>
+
+                      <span className="text-blue-600 font-medium">
+                        View Plan →
+                      </span>
+                    </div>
+                  </div>
+                </motion.div>
+              ))}
+            </motion.div>
+
+            {/* EMPTY STATE */}
+            {!loading && plans.length === 0 && (
+              <motion.p
+                variants={fadeUp}
+                initial="hidden"
+                animate="visible"
+                className="text-center text-gray-500 mt-8"
+              >
+                No plans available at the moment.
+              </motion.p>
+            )}
+          </div>
+        </section>
+        <Footer />
+      </div>
     </>
   );
 };
