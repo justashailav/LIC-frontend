@@ -69,21 +69,16 @@ const Navbar = () => {
           </div>
         </div>
       </nav>
-
-      {/* OVERLAY */}
       <div
         className={`fixed inset-0 bg-black/40 z-40 transition-opacity duration-300
         ${open ? "opacity-100 visible" : "opacity-0 invisible"}`}
         onClick={() => setOpen(false)}
       />
-
-      {/* MOBILE SLIDE MENU */}
       <div
         className={`fixed top-0 right-0 h-full w-72 bg-white z-50 shadow-2xl
         transform transition-transform duration-300 ease-in-out
         ${open ? "translate-x-0" : "translate-x-full"}`}
       >
-        {/* HEADER */}
         <div className="flex items-center justify-between px-6 h-16 border-b">
           <div
             onClick={handleLogoClick}
@@ -113,7 +108,7 @@ const Navbar = () => {
           <Link to="/contact" onClick={() => setOpen(false)} className="block hover:text-blue-600">Contact</Link>
 
           <a
-            href="tel:9015118744"
+            href="tel:7004942500"
             className="block text-center bg-blue-600 text-white py-3 rounded-xl font-semibold mt-6"
           >
             📞 Call Now
