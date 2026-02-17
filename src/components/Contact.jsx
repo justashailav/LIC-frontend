@@ -150,7 +150,7 @@ Message: ${formData.message}`;
                   href="mailto:your@email.com"
                   className="text-blue-600 hover:underline break-all"
                 >
-                  tejkavifuture@email.com
+                  tejkavifuture@gmail.com
                 </a>
               </div>
 
