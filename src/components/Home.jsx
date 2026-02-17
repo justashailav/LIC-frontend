@@ -175,9 +175,7 @@ const Home = () => {
           </motion.div>
         </section>
         <div className="relative mt-12 sm:mt-16 md:mt-20 p-6">
-          <h2 className="text-2xl sm:text-4xl font-bold text-gray-900">
-                LIC Plans
-              </h2>
+          
           <div
             className="
       flex gap-5 overflow-x-auto pb-6 px-1
@@ -190,6 +188,9 @@ const Home = () => {
       max-w-6xl mx-auto
     "
           >
+            <h2 className="text-2xl sm:text-4xl font-bold text-gray-900">
+                LIC Plans
+              </h2>
             {plans.map((plan, index) => (
               <motion.div
                 key={plan._id}
