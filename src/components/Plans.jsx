@@ -1,5 +1,5 @@
 import { getAllPlans } from "@/store/slices/planSlice";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
@@ -28,39 +28,42 @@ const Plans = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const { plans, loading, error } = useSelector((state) => state.plan);
+  const { plans = [], loading, error } = useSelector(
+    (state) => state.plan
+  );
+
+  const [selectedCategory, setSelectedCategory] = useState("All");
 
   useEffect(() => {
     dispatch(getAllPlans());
   }, [dispatch]);
 
+  // Categories
+  const categories = [
+    "All",
+    "Children",
+    "Adult",
+    "Senior Citizen",
+    "Family",
+  ];
+
+  // Safe Filter
+  const filteredPlans =
+    selectedCategory === "All"
+      ? plans
+      : plans.filter(
+          (plan) =>
+            plan.category &&
+            plan.category.toLowerCase() ===
+              selectedCategory.toLowerCase()
+        );
+
   return (
     <>
       <Helmet>
         <title>LIC Insurance Plans | Tejkavi Future Insurance</title>
-
-        <meta
-          name="description"
-          content="Explore LIC insurance plans including life insurance, child education plans, retirement and savings solutions. Get expert guidance from a trusted LIC advisor in Jharkhand."
-        />
-
-        <meta
-          name="keywords"
-          content="LIC Insurance Plans, Best LIC Plans, LIC Advisor Jharkhand, LIC Policies, Life Insurance Plans"
-        />
-
-        <meta
-          property="og:title"
-          content="LIC Insurance Plans - Tejkavi Future Insurance"
-        />
-
-        <meta
-          property="og:description"
-          content="Browse LIC plans designed to secure your family’s financial future."
-        />
-
-        <meta property="og:type" content="website" />
       </Helmet>
+
       <div className="bg-gray-50 min-h-screen">
         {/* HEADER */}
         <motion.section
@@ -77,8 +80,8 @@ const Plans = () => {
               LIC Insurance Plans
             </h1>
             <p className="text-gray-700 max-w-3xl mx-auto">
-              Explore a wide range of LIC insurance plans designed to secure
-              your family’s future, savings, and retirement goals.
+              Explore a wide range of LIC insurance plans designed to
+              secure your family’s future.
             </p>
           </motion.div>
         </motion.section>
@@ -86,74 +89,108 @@ const Plans = () => {
         {/* CONTENT */}
         <section className="px-6 py-20">
           <div className="max-w-6xl mx-auto">
+
+            {/* CATEGORY FILTER */}
+            <div className="flex flex-wrap justify-center gap-3 mb-12">
+              {categories.map((cat) => (
+                <button
+                  key={cat}
+                  onClick={() => setSelectedCategory(cat)}
+                  className={`px-5 py-2 rounded-full text-sm font-medium transition-all duration-300
+                    ${
+                      selectedCategory === cat
+                        ? "bg-blue-600 text-white shadow-md"
+                        : "bg-white border border-gray-300 text-gray-600 hover:bg-blue-50"
+                    }`}
+                >
+                  {cat}
+                </button>
+              ))}
+            </div>
+
+            {/* LOADING */}
             {loading && (
-              <p className="text-center text-gray-500">Loading plans...</p>
+              <p className="text-center text-gray-500">
+                Loading plans...
+              </p>
             )}
 
-            {error && <p className="text-center text-red-500">{error}</p>}
+            {/* ERROR */}
+            {error && (
+              <p className="text-center text-red-500">
+                {error}
+              </p>
+            )}
 
             {/* PLANS GRID */}
-            <motion.div
-              className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3"
-              variants={containerVariants}
-              initial="hidden"
-              animate="visible"
-            >
-              {plans.map((plan) => (
-                <motion.div
-                  key={plan._id}
-                  variants={fadeUp}
-                  whileHover={{ y: -6 }}
-                  transition={{ type: "spring", stiffness: 180 }}
-                  className="bg-white rounded-2xl shadow-sm hover:shadow-xl transition overflow-hidden flex flex-col cursor-pointer"
-                  onClick={() => navigate(`/plans/${plan.slug}`)}
-                >
-                  {/* IMAGE */}
-                  {plan.image && (
-                    <div className="relative w-full h-48 overflow-hidden">
-                      <img
-                        src={plan.image}
-                        alt={plan.title}
-                        className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
-                      />
-                    </div>
-                  )}
-
-                  {/* CONTENT */}
-                  <div className="p-6 flex flex-col flex-1">
-                    <h2 className="text-lg font-semibold mb-3 text-gray-900">
-                      {plan.title}
-                    </h2>
-
-                    <p className="text-gray-600 text-sm mb-6 line-clamp-3 flex-1">
-                      {plan.description}
-                    </p>
-
-                    <div className="flex items-center justify-between mt-auto">
-                      <span className="text-sm text-gray-500">Learn more</span>
-
-                      <span className="text-blue-600 font-medium">
-                        View Plan →
-                      </span>
-                    </div>
-                  </div>
-                </motion.div>
-              ))}
-            </motion.div>
-
-            {/* EMPTY STATE */}
-            {!loading && plans.length === 0 && (
-              <motion.p
-                variants={fadeUp}
+            {!loading && (
+              <motion.div
+                className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3"
+                variants={containerVariants}
                 initial="hidden"
                 animate="visible"
-                className="text-center text-gray-500 mt-8"
               >
-                No plans available at the moment.
-              </motion.p>
+                {filteredPlans.map((plan) => (
+                  <motion.div
+                    key={plan._id}
+                    variants={fadeUp}
+                    whileHover={{ y: -6 }}
+                    transition={{ type: "spring", stiffness: 180 }}
+                    className="bg-white rounded-2xl shadow-sm hover:shadow-xl transition overflow-hidden flex flex-col cursor-pointer"
+                    onClick={() =>
+                      navigate(`/plans/${plan.slug}`)
+                    }
+                  >
+                    {/* IMAGE */}
+                    {plan.image && (
+                      <div className="relative w-full h-48 overflow-hidden">
+                        <img
+                          src={plan.image}
+                          alt={plan.title}
+                          className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
+                        />
+                      </div>
+                    )}
+
+                    {/* CONTENT */}
+                    <div className="p-6 flex flex-col flex-1">
+                      {/* CATEGORY BADGE */}
+                      <span className="text-xs font-medium text-blue-600 mb-2">
+                        {plan.category}
+                      </span>
+
+                      <h2 className="text-lg font-semibold mb-3 text-gray-900">
+                        {plan.title}
+                      </h2>
+
+                      <p className="text-gray-600 text-sm mb-6 line-clamp-3 flex-1">
+                        {plan.description}
+                      </p>
+
+                      <div className="flex items-center justify-between mt-auto">
+                        <span className="text-sm text-gray-500">
+                          Learn more
+                        </span>
+
+                        <span className="text-blue-600 font-medium">
+                          View Plan →
+                        </span>
+                      </div>
+                    </div>
+                  </motion.div>
+                ))}
+              </motion.div>
+            )}
+
+            {/* EMPTY STATE */}
+            {!loading && filteredPlans.length === 0 && (
+              <p className="text-center text-gray-500 mt-8">
+                No plans available in this category.
+              </p>
             )}
           </div>
         </section>
+
         <Footer />
       </div>
     </>

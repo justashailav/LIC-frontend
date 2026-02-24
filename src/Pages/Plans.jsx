@@ -44,6 +44,7 @@ export default function AdminPlans() {
     benefits: "",
     whoShouldBuy: "",
     order: 0,
+    category: "",
 
     // ⭐ Popular fields
     isPopular: false,
@@ -81,6 +82,7 @@ export default function AdminPlans() {
       benefits: plan.benefits || "",
       whoShouldBuy: plan.whoShouldBuy || "",
       order: plan.order || 0,
+      category: plan.category || "",
 
       isPopular: plan.isPopular || false,
       popularLabel: plan.popularLabel || "",
@@ -99,49 +101,49 @@ export default function AdminPlans() {
   };
 
   const handleSubmit = (e) => {
-  e.preventDefault();
+    e.preventDefault();
 
-  const formData = new FormData();
+    const formData = new FormData();
 
-  formData.append("title", form.title);
-  formData.append("slug", form.slug);
-  formData.append("description", form.description);
-  formData.append("order", form.order);
-  formData.append("isPopular", form.isPopular);
-  formData.append("popularLabel", form.popularLabel);
-  formData.append("popularValue", form.popularValue);
-  formData.append("popularButtonText", form.popularButtonText);
-  formData.append("popularBg", form.popularBg);
+    formData.append("title", form.title);
+    formData.append("slug", form.slug);
+    formData.append("description", form.description);
+    formData.append("order", form.order);
+    formData.append("category", form.category); // ✅ ADD THIS
+    formData.append("isPopular", form.isPopular);
+    formData.append("popularLabel", form.popularLabel);
+    formData.append("popularValue", form.popularValue);
+    formData.append("popularButtonText", form.popularButtonText);
+    formData.append("popularBg", form.popularBg);
 
-  // Convert arrays properly
-  const benefitsArray =
-    typeof form.benefits === "string"
-      ? form.benefits.split(",").map((b) => b.trim())
-      : form.benefits;
+    // Convert arrays properly
+    const benefitsArray =
+      typeof form.benefits === "string"
+        ? form.benefits.split(",").map((b) => b.trim())
+        : form.benefits;
 
-  const whoShouldBuyArray =
-    typeof form.whoShouldBuy === "string"
-      ? form.whoShouldBuy.split(",").map((w) => w.trim())
-      : form.whoShouldBuy;
+    const whoShouldBuyArray =
+      typeof form.whoShouldBuy === "string"
+        ? form.whoShouldBuy.split(",").map((w) => w.trim())
+        : form.whoShouldBuy;
 
-  formData.append("benefits", JSON.stringify(benefitsArray));
-  formData.append("whoShouldBuy", JSON.stringify(whoShouldBuyArray));
+    formData.append("benefits", JSON.stringify(benefitsArray));
+    formData.append("whoShouldBuy", JSON.stringify(whoShouldBuyArray));
 
-  // 🔥 Single Image
-  if (form.image) {
-    formData.append("image", form.image);
-  }
+    // 🔥 Single Image
+    if (form.image) {
+      formData.append("image", form.image);
+    }
 
-  if (editingId) {
-    dispatch(updatePlan({ id: editingId, data: formData }));
-  } else {
-    dispatch(createPlan(formData));
-  }
+    if (editingId) {
+      dispatch(updatePlan({ id: editingId, data: formData }));
+    } else {
+      dispatch(createPlan(formData));
+    }
 
-  setOpenModal(false);
-  setEditingId(null);
-};
-
+    setOpenModal(false);
+    setEditingId(null);
+  };
 
   return (
     <div className="min-h-screen bg-gray-50 p-6">
@@ -167,12 +169,13 @@ export default function AdminPlans() {
                 benefits: "",
                 whoShouldBuy: "",
                 order: 0,
+                category: "",
                 isPopular: false,
                 popularLabel: "",
                 popularValue: "",
                 popularButtonText: "View Plans",
                 popularBg: "from-gray-50 to-white",
-                image:null
+                image: null,
               });
               setOpenModal(true);
             }}
@@ -267,6 +270,22 @@ export default function AdminPlans() {
               onChange={handleChange}
               className="w-full rounded-lg border px-4 py-3"
             />
+            <div>
+              <label className="block mb-1 font-medium">Category</label>
+              <select
+                name="category"
+                value={form.category}
+                onChange={handleChange}
+                required
+                className="w-full rounded-lg border px-4 py-3"
+              >
+                <option value="">Select Category</option>
+                <option value="Children">Children</option>
+                <option value="Adult">Adult</option>
+                <option value="Senior Citizen">Senior Citizen</option>
+                <option value="Family">Family</option>
+              </select>
+            </div>
             <div>
               <label className="block mb-1 font-medium">Plan Image</label>
               <input
