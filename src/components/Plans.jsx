@@ -28,10 +28,8 @@ const Plans = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const { plans = [], loading, error } = useSelector(
-    (state) => state.plan
-  );
-  console.log(plans)
+  const { plans = [], loading, error } = useSelector((state) => state.plan);
+  console.log(plans);
   const [selectedCategory, setSelectedCategory] = useState("All");
 
   useEffect(() => {
@@ -41,10 +39,13 @@ const Plans = () => {
   // Categories
   const categories = [
     "All",
-    "Children",
-    "Adult",
-    "Senior Citizen",
-    "Family",
+    "Endowment Plan",
+    "Money Back Plan",
+    "Children Plan",
+    "Single Premium Plan",
+    "Term Insurance Plan",
+    "Health Plan",
+    "Pension Plan",
   ];
 
   // Safe Filter
@@ -54,8 +55,7 @@ const Plans = () => {
       : plans.filter(
           (plan) =>
             plan.category &&
-            plan.category.toLowerCase() ===
-              selectedCategory.toLowerCase()
+            plan.category.toLowerCase() === selectedCategory.toLowerCase(),
         );
 
   return (
@@ -80,8 +80,8 @@ const Plans = () => {
               LIC Insurance Plans
             </h1>
             <p className="text-gray-700 max-w-3xl mx-auto">
-              Explore a wide range of LIC insurance plans designed to
-              secure your family’s future.
+              Explore a wide range of LIC insurance plans designed to secure
+              your family’s future.
             </p>
           </motion.div>
         </motion.section>
@@ -89,38 +89,52 @@ const Plans = () => {
         {/* CONTENT */}
         <section className="px-6 py-20">
           <div className="max-w-6xl mx-auto">
-
             {/* CATEGORY FILTER */}
-            <div className="flex flex-wrap justify-center gap-3 mb-12">
-              {categories.map((cat) => (
-                <button
-                  key={cat}
-                  onClick={() => setSelectedCategory(cat)}
-                  className={`px-5 py-2 rounded-full text-sm font-medium transition-all duration-300
-                    ${
-                      selectedCategory === cat
-                        ? "bg-blue-600 text-white shadow-md"
-                        : "bg-white border border-gray-300 text-gray-600 hover:bg-blue-50"
-                    }`}
-                >
-                  {cat}
-                </button>
-              ))}
+            <div className="mb-12">
+              {/* Mobile Scrollable */}
+              <div className="flex md:hidden overflow-x-auto no-scrollbar gap-3 pb-2">
+                {categories.map((cat) => (
+                  <button
+                    key={cat}
+                    onClick={() => setSelectedCategory(cat)}
+                    className={`whitespace-nowrap px-5 py-2 rounded-full text-sm font-medium transition-all duration-300 flex-shrink-0
+          ${
+            selectedCategory === cat
+              ? "bg-blue-600 text-white shadow-md"
+              : "bg-white border border-gray-300 text-gray-600"
+          }`}
+                  >
+                    {cat}
+                  </button>
+                ))}
+              </div>
+
+              {/* Desktop Centered */}
+              <div className="hidden md:flex flex-wrap justify-center gap-3">
+                {categories.map((cat) => (
+                  <button
+                    key={cat}
+                    onClick={() => setSelectedCategory(cat)}
+                    className={`px-5 py-2 rounded-full text-sm font-medium transition-all duration-300
+          ${
+            selectedCategory === cat
+              ? "bg-blue-600 text-white shadow-md"
+              : "bg-white border border-gray-300 text-gray-600 hover:bg-blue-50"
+          }`}
+                  >
+                    {cat}
+                  </button>
+                ))}
+              </div>
             </div>
 
             {/* LOADING */}
             {loading && (
-              <p className="text-center text-gray-500">
-                Loading plans...
-              </p>
+              <p className="text-center text-gray-500">Loading plans...</p>
             )}
 
             {/* ERROR */}
-            {error && (
-              <p className="text-center text-red-500">
-                {error}
-              </p>
-            )}
+            {error && <p className="text-center text-red-500">{error}</p>}
 
             {/* PLANS GRID */}
             {!loading && (
@@ -137,9 +151,7 @@ const Plans = () => {
                     whileHover={{ y: -6 }}
                     transition={{ type: "spring", stiffness: 180 }}
                     className="bg-white rounded-2xl shadow-sm hover:shadow-xl transition overflow-hidden flex flex-col cursor-pointer"
-                    onClick={() =>
-                      navigate(`/plans/${plan.slug}`)
-                    }
+                    onClick={() => navigate(`/plans/${plan.slug}`)}
                   >
                     {/* IMAGE */}
                     {plan.image && (

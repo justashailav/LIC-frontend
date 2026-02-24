@@ -270,22 +270,22 @@ export default function AdminPlans() {
               onChange={handleChange}
               className="w-full rounded-lg border px-4 py-3"
             />
-            <div>
-              <label className="block mb-1 font-medium">Category</label>
-              <select
-                name="category"
-                value={form.category}
-                onChange={handleChange}
-                required
-                className="w-full rounded-lg border px-4 py-3"
-              >
-                <option value="">Select Category</option>
-                <option value="Children">Children</option>
-                <option value="Adult">Adult</option>
-                <option value="Senior Citizen">Senior Citizen</option>
-                <option value="Family">Family</option>
-              </select>
-            </div>
+            <select
+              name="category"
+              value={form.category}
+              onChange={handleChange}
+              required
+              className="w-full rounded-lg border px-4 py-3"
+            >
+              <option value="">Select Plan Type</option>
+              <option value="Endowment Plan">Endowment Plan</option>
+              <option value="Money Back Plan">Money Back Plan</option>
+              <option value="Children Plan">Children Plan</option>
+              <option value="Single Premium Plan">Single Premium Plan</option>
+              <option value="Term Insurance Plan">Term Insurance Plan</option>
+              <option value="Health Plan">Health Plan</option>
+              <option value="Pension Plan">Pension Plan</option>
+            </select>
             <div>
               <label className="block mb-1 font-medium">Plan Image</label>
               <input
