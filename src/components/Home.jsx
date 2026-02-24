@@ -176,10 +176,10 @@ const Home = () => {
         </section>
         <div className="relative mt-12 sm:mt-16 md:mt-20 p-6">
           <div className="max-w-6xl mx-auto mb-8 text-center sm:text-left">
-    <h2 className="text-2xl sm:text-4xl font-bold text-gray-900">
-      LIC Plans
-    </h2>
-  </div>
+            <h2 className="text-2xl sm:text-4xl font-bold text-gray-900">
+              LIC Plans
+            </h2>
+          </div>
           <div
             className="
       flex gap-5 overflow-x-auto pb-6 px-1
@@ -192,7 +192,6 @@ const Home = () => {
       max-w-6xl mx-auto
     "
           >
-            
             {plans.map((plan, index) => (
               <motion.div
                 key={plan._id}
@@ -395,8 +394,8 @@ const Home = () => {
 
             <div className="grid sm:grid-cols-3 gap-6 mt-8">
               {[
-                { title: "Experience", value: "5+ Years" },
-                { title: "LIC Agent Code", value: "03824/512" },
+                { title: "Experience", value: "11+ Years" },
+                { title: "LIC Agent Code", value: "03824/519" },
                 { title: "Service Area", value: "Jharkhand" },
               ].map((item, i) => (
                 <motion.div

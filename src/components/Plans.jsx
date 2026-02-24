@@ -31,7 +31,7 @@ const Plans = () => {
   const { plans = [], loading, error } = useSelector(
     (state) => state.plan
   );
-
+  console.log(plans)
   const [selectedCategory, setSelectedCategory] = useState("All");
 
   useEffect(() => {

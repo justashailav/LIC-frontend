@@ -90,10 +90,24 @@ const Footer = () => {
       </div>
 
       {/* Bottom Line */}
-      <div className="border-t border-gray-700 mt-10 pt-6 text-center text-sm">
-        © {new Date().getFullYear()} Tejkavi Future Insurance. All Rights
-        Reserved.
-      </div>
+      {/* Bottom Line */}
+<div className="border-t border-gray-700 mt-10 pt-6 text-center text-sm space-y-2">
+  <p>
+    © {new Date().getFullYear()} Tejkavi Future Insurance. All Rights Reserved.
+  </p>
+
+  <p className="text-gray-400">
+    Powered by{" "}
+    <a
+      href="https://launchliftx.com"
+      target="_blank"
+      rel="noopener noreferrer"
+      className="text-blue-400 hover:text-white transition font-medium"
+    >
+      LaunchLiftX.com
+    </a>
+  </p>
+</div>
     </motion.footer>
   );
 };
